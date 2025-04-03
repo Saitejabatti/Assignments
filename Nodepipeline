@@ -28,8 +28,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'scp -r ./dist user@server:/var/www/html'  // Deploy via SSH
+                sshagent(['ssh-server-creds']) {
+                    sh 'scp -r ./dist user@server:/var/www/html'
+                    sh 'ssh user@server "systemctl restart nginx"'
+                }
             }
-        }
-    }
+       }
 }
