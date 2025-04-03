@@ -29,8 +29,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(['ssh-server-creds']) {
-                    sh 'scp -r ./dist ubuntu@34.235.125.23 :/var/www/html'
-                    sh 'ssh ubuntu@34.235.125.23 "systemctl restart nginx"'
+                    sh 'scp -r ./dist ubuntu@3.95.67.153 :/var/www/html'
+                    sh 'ssh ubuntu@3.95.67.153 "systemctl restart nginx"'
                 }
             }
         }
